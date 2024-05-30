@@ -1,63 +1,78 @@
 plugins {
-    `maven-publish`
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
 }
 
-/**
- * Reference doc:
- * https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html#org.gradle.api.publish.maven.MavenPublication:artifact(java.lang.Object)
- * https://docs.gradle.org/current/userguide/publishing_setup.html
- */
-val androidLibrary = the<com.android.build.gradle.LibraryExtension>()
-val androidJavadocs = tasks.create("androidJavadocs", Javadoc::class.java) {
-    isFailOnError = false
-    source(androidLibrary.sourceSets["main"].java.srcDirs)
-    options.encoding = "UTF-8"
-    doFirst {
-        classpath += project.files(androidLibrary.bootClasspath.joinToString(File.pathSeparator))
+android {
+    namespace = "com.sik.sikcomposeui"
+    compileSdk = 34
+
+    defaultConfig {
+        minSdk = 24
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
-}
 
-val androidJavadocsJar = tasks.create("androidJavadocsJar", Jar::class.java) {
-    dependsOn(androidJavadocs)
-    archiveClassifier = "javadoc"
-    from(androidJavadocs.destinationDir)
-}
-
-val androidSourcesJar = tasks.create("androidSourcesJar", Jar::class.java) {
-    archiveClassifier = "sources"
-    from(androidLibrary.sourceSets["main"].java.srcDirs)
-}
-
-if (JavaVersion.current().isJava8Compatible) {
-    allprojects {
-        tasks.withType<Javadoc>().configureEach {
-            options.encoding += "Xdoclint:none"
-            options.encoding += "-quiet"
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
 }
 
-afterEvaluate {
-
-
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = "com.example"
-                artifactId = "your-artifact-id"
-                version = "1.0.0"
-
-                afterEvaluate {
-                    if (plugins.hasPlugin("com.android.application") || plugins.hasPlugin("com.android.library")) {
-                        from(components["release"])
-                    }
-                }
-
-                if (plugins.hasPlugin("com.android.application") || plugins.hasPlugin("com.android.library")) {
-                    artifact(androidSourcesJar)
-                    artifact(androidJavadocsJar)
-                }
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            afterEvaluate {
+                from(components["release"])
             }
         }
     }
+}
+
+dependencies {
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+
+    api(libs.androidx.activity.compose)
+    api(libs.androidx.compose.bom)
+    api(libs.androidx.ui)
+    api(libs.androidx.ui.graphics)
+    api(libs.sik.extension)
+    api(libs.androidx.navigation.runtime.ktx)
+    api(libs.androidx.navigation.compose)
+    api(libs.androidx.runtime.livedata)
+    api(libs.camerax.core)
+    api(libs.camerax.camera2)
+    api(libs.camerax.lifecycle)
+    api(libs.camerax.video)
+    api(libs.camerax.view)
+    api(libs.camerax.mlkit.vision)
+    api(libs.camerax.extensions)
+
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

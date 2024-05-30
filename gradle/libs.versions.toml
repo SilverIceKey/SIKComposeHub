@@ -1,5 +1,7 @@
 [versions]
 agp = "8.4.0"
+androidMavenGradlePlugin = "2.1"
+gradle = "7.4.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -7,7 +9,7 @@ junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.8.0"
 activityCompose = "1.9.0"
-composeBom = "2023.08.00"
+composeBom = "2024.05.00"
 appcompat = "1.6.1"
 material = "1.12.0"
 sik-extension = "1.0.48"
@@ -15,9 +17,12 @@ navigationRuntimeKtx = "2.7.7"
 navigationCompose = "2.7.7"
 runtimeLivedata = "1.6.7"
 camerax_version = "1.4.0-beta01"
+material3Android = "1.2.1"
 
 [libraries]
+android-maven-gradle-plugin = { module = "com.github.dcendents:android-maven-gradle-plugin", version.ref = "androidMavenGradlePlugin" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -44,6 +49,7 @@ camerax-video = { group = "androidx.camera", name = "camera-video", version.ref 
 camerax-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax_version" }
 camerax-mlkit-vision = { group = "androidx.camera", name = "camera-mlkit-vision", version.ref = "camerax_version" }
 camerax-extensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "camerax_version" }
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

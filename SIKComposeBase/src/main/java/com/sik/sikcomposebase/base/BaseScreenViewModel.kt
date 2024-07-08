@@ -3,7 +3,7 @@ package com.sik.sikcomposebase.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class ScreenViewModel : BaseViewModel() {
+abstract class BaseScreenViewModel : BaseViewModel() {
     private val _screens = MutableLiveData<List<Screen>>(emptyList())
     val screens: LiveData<List<Screen>> = _screens
 

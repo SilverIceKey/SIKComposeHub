@@ -10,7 +10,7 @@ import androidx.navigation.compose.composable
 @Composable
 fun DynamicNavHost(
     navController: NavHostController,
-    viewModel: ScreenViewModel
+    viewModel: BaseScreenViewModel
 ) {
     val screens by viewModel.screens.observeAsState(emptyList())
 

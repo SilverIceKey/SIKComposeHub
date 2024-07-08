@@ -41,9 +41,13 @@ android {
 
 publishing {
     publications {
+
         register<MavenPublication>("release") {
             afterEvaluate {
                 from(components["release"])
+                groupId = project.findProperty("GROUP_ID") as String // 使用 GROUP_ID 属性
+                artifactId = "SIKComposeUI"
+                version = project.findProperty("VERSION") as String // 使用 VERSION_NAME 属性
             }
         }
     }

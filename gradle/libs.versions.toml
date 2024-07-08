@@ -12,7 +12,6 @@ activityCompose = "1.9.0"
 composeBom = "2024.05.00"
 appcompat = "1.6.1"
 material = "1.12.0"
-sik-extension = "1.0.48"
 navigationRuntimeKtx = "2.7.7"
 navigationCompose = "2.7.7"
 runtimeLivedata = "1.6.7"
@@ -38,7 +37,6 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-sik-extension = { group = "com.github.SilverIceKey", name = "SIKExtension", version.ref = "sik-extension" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }

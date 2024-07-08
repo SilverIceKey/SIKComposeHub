@@ -59,7 +59,6 @@ dependencies {
     api(libs.androidx.compose.bom)
     api(libs.androidx.ui)
     api(libs.androidx.ui.graphics)
-    api(libs.sik.extension)
     api(libs.androidx.navigation.runtime.ktx)
     api(libs.androidx.navigation.compose)
     api(libs.androidx.runtime.livedata)

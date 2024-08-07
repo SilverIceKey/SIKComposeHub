@@ -8,8 +8,7 @@ import com.sik.sikcomposebase.base.Screen
 class MainActivity : BaseActivity() {
     @Composable
     override fun initContent(navController: NavHostController) {
-        addScreen(Screen("home") { HomeScreen(navController = navController) })
-        addScreen(Screen("details") { DetailsScreen(navController = navController) })
+        addScreen(Screen(route = "home"){HomeScreen(navController = navController,this)})
     }
 
 }

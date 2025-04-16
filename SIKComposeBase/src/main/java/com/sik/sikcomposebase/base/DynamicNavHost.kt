@@ -9,12 +9,13 @@ import androidx.navigation.compose.composable
 
 @Composable
 fun DynamicNavHost(
+    startDestination: String = "home",
     navController: NavHostController,
     viewModel: BaseScreenViewModel
 ) {
     val screens by viewModel.screens.observeAsState(emptyList())
 
-    NavHost(navController = navController, startDestination = "home") {
+    NavHost(navController = navController, startDestination = startDestination) {
         screens.forEach { screen ->
             composable(screen.route) {
                 screen.content()

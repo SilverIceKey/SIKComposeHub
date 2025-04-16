@@ -23,8 +23,19 @@ abstract class BaseActivity : ComponentActivity() {
                 initContent(navController)
                 isInitContent = true
             }
-            DynamicNavHost(navController = navController, viewModel = baseScreenViewModel)
+            DynamicNavHost(
+                startDestination(),
+                navController = navController,
+                viewModel = baseScreenViewModel
+            )
         }
+    }
+
+    /**
+     * 起始目的地
+     */
+    open fun startDestination(): String {
+        return "home"
     }
 
     /**
